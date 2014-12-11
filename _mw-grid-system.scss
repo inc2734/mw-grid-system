@@ -1,0 +1,273 @@
+/**
+ * MW Grid System
+ *
+ * Author : Takashi Kitajima
+ * Author : Url http://2inc.org
+ * Version: 1.0.0
+ * License: GPLv2
+ * Support Browser: Modern Browser and IE8-
+ */
+
+/**
+ * $width_large
+ * ワイドPCの最大幅
+ */
+$width_large: 1170px;
+
+/**
+ * $width_pc
+ * PCの最大幅
+ */
+$width_pc: 940px;
+
+/**
+ * $width_tablet
+ * タブレットの最大幅
+ */
+$width_tablet: 700px;
+
+/**
+ * $bp_pc
+ * PCサイズに切り替えるブレイクポイント
+ */
+$bp_pc: 1240px;
+
+/**
+ * $bp_tablet
+ * タブレットサイズに切り替えるブレイクポイント
+ */
+$bp_tablet: 960px;
+
+/**
+ * $bp_sp
+ * スマホサイズに切り替えるブレイクポイント
+ */
+$bp_sp: 740px;
+
+/**
+ * $margin
+ * カラム間の余白
+ */
+$margin: 15px;
+
+/**
+ * col
+ * カラムの共通の設定
+ */
+@mixin col {
+	box-sizing: border-box;
+	float: left;
+	min-height: 1px;
+}
+
+/**
+ * col-12
+ * 最大幅カラムの共通の設定
+ */
+@mixin col-12 {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/**
+ * col-large
+ * ワイドPC用のカラム
+ */
+@mixin col-large( $i ) {
+	@if $i == 12 {
+		@include col-12;
+		width: $width_large;
+	} @else {
+		padding-left: $margin;
+		padding-right: $margin;
+		width: 100% / 12 * $i
+	}
+}
+
+/**
+ * col-pc
+ * PC用のカラム
+ */
+@mixin col-pc( $i ) {
+	@if $i == 12 {
+		@include col-12;
+		width: $width_pc;
+	} @else {
+		@include col-large( $i );
+	}
+}
+
+/**
+ * col-tablet
+ * タブレット用のカラム
+ */
+@mixin col-tablet( $i ) {
+	@if $i == 12 {
+		@include col-12;
+		width: $width_tablet;
+	} @else {
+		@include col-large( $i );
+	}
+}
+
+/**
+ * col-sp
+ * スマホ用のカラム
+ */
+@mixin col-sp( $i ) {
+	float: none;
+	padding-left: $margin;
+	padding-right: $margin;
+	width: auto;
+}
+
+/**
+ * col-xs
+ * スマホ専用のカラム
+ */
+@mixin col-xs( $i ) {
+	@if $i == 12 {
+		@include col-sp( $i );
+	} @else {
+		@include col-large( $i );
+	}
+}
+
+/**
+ * offset
+ * オフセット（左余白）
+ */
+@mixin offset( $i ) {
+	margin-left: 100% / 12 * $i
+}
+
+/**
+ * offset-sp
+ * スマホ用のオフセット（左余白）
+ */
+@mixin offset-sp( $i ) {
+	margin-left: 0;
+}
+
+.clearfix {
+	*zoom: 1;
+	&:after {
+		display: block;
+		clear: both;
+		content: '';
+	}
+}
+
+.row {
+	@extend .clearfix;
+	margin-left: auto;
+	margin-right: auto;
+	*zoom: 1;
+	.row {
+		margin-left: -$margin;
+		margin-right: -$margin;
+		@media screen and ( max-width: $bp_pc ) {
+			margin-left: -$margin;
+			margin-right: -$margin;
+		}
+		@media screen and ( max-width: $bp_tablet ) {
+			margin-left: -$margin;
+			margin-right: -$margin;
+		}
+		@media screen and ( max-width: $bp_sp ) {
+			margin-left: -$margin;
+			margin-right: -$margin;
+		}
+	}
+
+	@for $i from 1 through 12 {
+		.col-#{$i} {
+			@extend .clearfix;
+			@include col;
+			@include col-large( $i );
+			@media screen and ( max-width: $bp_pc ) {
+				@include col-pc( $i );
+			}
+			@media screen and ( max-width: $bp_tablet ) {
+				@include col-tablet( $i );
+			}
+			@media screen and ( max-width: $bp_sp ) {
+				@include col-sp( $i );
+			}
+		}
+	}
+
+	@for $i from 1 through 12 {
+		.col-md-#{$i} {
+			@include col;
+			@include col-pc( $i );
+			@media screen and ( max-width: $bp_tablet ) {
+				@include col-tablet( $i );
+			}
+			@media screen and ( max-width: $bp_sp ) {
+				@include col-sp( $i );
+			}
+		}
+	}
+
+	@media screen and ( max-width: $bp_tablet ) {
+		@for $i from 1 through 12 {
+			.col-sm-#{$i} {
+				@include col;
+				@include col-tablet( $i );
+				@media screen and ( max-width: $bp_sp ) {
+					@include col-sp( $i );
+				}
+			}
+		}
+	}
+
+	@media screen and ( max-width: $bp_sp ) {
+		@for $i from 1 through 12 {
+			.col-xs-#{$i} {
+				@include col;
+				@include col-xs( $i );
+			}
+		}
+	}
+
+	@for $i from 1 through 11 {
+		.offset-#{$i} {
+			@include offset( $i );
+			@media screen and ( max-width: $bp_pc ) {
+				@include offset( $i );
+			}
+			@media screen and ( max-width: $bp_tablet ) {
+				@include offset( $i );
+			}
+			@media screen and ( max-width: $bp_sp ) {
+				@include offset-sp( $i );
+			}
+		}
+	}
+
+	@media screen and ( max-width: $bp_pc ) {
+		@for $i from 1 through 11 {
+			.offset-md-#{$i} {
+				@include offset( $i );
+			}
+		}
+	}
+
+	@media screen and ( max-width: $bp_tablet ) {
+		@for $i from 1 through 11 {
+			.offset-sm-#{$i} {
+				@include offset( $i );
+			}
+		}
+	}
+
+	@media screen and ( max-width: $bp_sp ) {
+		@for $i from 1 through 11 {
+			.offset-xs-#{$i} {
+				@include offset( $i );
+			}
+		}
+	}
+}
