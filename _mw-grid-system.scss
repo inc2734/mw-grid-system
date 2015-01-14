@@ -1,10 +1,10 @@
 /**
  * MW Grid System
  *
- * Author : Takashi Kitajima
- * Author : Url http://2inc.org
- * Version: 1.0.0
- * License: GPLv2
+ * Author    : Takashi Kitajima
+ * Author URL:  http://2inc.org
+ * Version   : 1.1.0
+ * License   : GPLv2
  * Support Browser: Modern Browser and IE8-
  */
 
@@ -163,7 +163,7 @@ $margin: 15px;
 	@extend .clearfix;
 	margin-left: auto;
 	margin-right: auto;
-	*zoom: 1;
+
 	.row {
 		margin-left: -$margin;
 		margin-right: -$margin;
@@ -180,94 +180,113 @@ $margin: 15px;
 			margin-right: -$margin;
 		}
 	}
+}
 
-	@for $i from 1 through 12 {
-		.col-#{$i} {
-			@extend .clearfix;
-			@include col;
-			@include col-large( $i );
-			@media screen and ( max-width: $bp_pc ) {
-				@include col-pc( $i );
-			}
-			@media screen and ( max-width: $bp_tablet ) {
-				@include col-tablet( $i );
-			}
-			@media screen and ( max-width: $bp_sp ) {
-				@include col-sp( $i );
-			}
-		}
-	}
-
-	@for $i from 1 through 12 {
-		.col-md-#{$i} {
-			@include col;
+@for $i from 1 through 12 {
+	.col-#{$i} {
+		@media screen and ( max-width: $bp_pc ) {
 			@include col-pc( $i );
-			@media screen and ( max-width: $bp_tablet ) {
-				@include col-tablet( $i );
-			}
+		}
+		@media screen and ( max-width: $bp_tablet ) {
+			@include col-tablet( $i );
+		}
+		@media screen and ( max-width: $bp_sp ) {
+			@include col-sp( $i );
+		}
+	}
+}
+
+@media screen and ( max-width: $bp_sp ) {
+	@for $i from 1 through 12 {
+		.col-xs-#{$i} {
+			@include col;
+			@include col-xs( $i );
+		}
+	}
+}
+
+@media screen and ( max-width: $bp_tablet ) {
+	@for $i from 1 through 12 {
+		.col-sm-#{$i} {
+			@include col;
+			@include col-tablet( $i );
 			@media screen and ( max-width: $bp_sp ) {
 				@include col-sp( $i );
 			}
 		}
 	}
+}
 
-	@media screen and ( max-width: $bp_tablet ) {
-		@for $i from 1 through 12 {
-			.col-sm-#{$i} {
-				@include col;
-				@include col-tablet( $i );
-				@media screen and ( max-width: $bp_sp ) {
-					@include col-sp( $i );
-				}
-			}
+@for $i from 1 through 12 {
+	.col-md-#{$i} {
+		@include col;
+		@include col-pc( $i );
+		@media screen and ( max-width: $bp_pc ) {
+			@include col-pc( $i );
+		}
+		@media screen and ( max-width: $bp_tablet ) {
+			@include col-tablet( $i );
+		}
+		@media screen and ( max-width: $bp_sp ) {
+			@include col-sp( $i );
 		}
 	}
+}
 
-	@media screen and ( max-width: $bp_sp ) {
-		@for $i from 1 through 12 {
-			.col-xs-#{$i} {
-				@include col;
-				@include col-xs( $i );
-			}
-		}
+@for $i from 1 through 12 {
+	.col-#{$i} {
+		@extend .clearfix;
+		@include col;
+		@include col-large( $i );
 	}
+}
 
-	@for $i from 1 through 11 {
-		.offset-#{$i} {
+@for $i from 1 through 11 {
+	.offset-#{$i} {
+		@include offset( $i );
+		@media screen and ( max-width: $bp_pc ) {
 			@include offset( $i );
-			@media screen and ( max-width: $bp_pc ) {
-				@include offset( $i );
-			}
-			@media screen and ( max-width: $bp_tablet ) {
-				@include offset( $i );
-			}
-			@media screen and ( max-width: $bp_sp ) {
-				@include offset-sp( $i );
-			}
+		}
+		@media screen and ( max-width: $bp_tablet ) {
+			@include offset( $i );
+		}
+		@media screen and ( max-width: $bp_sp ) {
+			@include offset-sp( $i );
 		}
 	}
+}
 
-	@media screen and ( max-width: $bp_pc ) {
-		@for $i from 1 through 11 {
-			.offset-md-#{$i} {
-				@include offset( $i );
-			}
+@media screen and ( max-width: $bp_pc ) {
+	@for $i from 1 through 11 {
+		.offset-md-#{$i} {
+			@include offset( $i );
 		}
 	}
+}
 
-	@media screen and ( max-width: $bp_tablet ) {
-		@for $i from 1 through 11 {
-			.offset-sm-#{$i} {
-				@include offset( $i );
-			}
+@media screen and ( max-width: $bp_tablet ) {
+	@for $i from 1 through 11 {
+		.offset-sm-#{$i} {
+			@include offset( $i );
 		}
 	}
+}
 
-	@media screen and ( max-width: $bp_sp ) {
-		@for $i from 1 through 11 {
-			.offset-xs-#{$i} {
-				@include offset( $i );
-			}
+@media screen and ( max-width: $bp_sp ) {
+	@for $i from 1 through 11 {
+		.offset-xs-#{$i} {
+			@include offset( $i );
 		}
 	}
+}
+
+/**
+ * classes
+ */
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
 }
