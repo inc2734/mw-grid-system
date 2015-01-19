@@ -3,7 +3,7 @@
  *
  * Author    : Takashi Kitajima
  * Author URL:  http://2inc.org
- * Version   : 1.1.0
+ * Version   : 1.2.0
  * License   : GPLv2
  * Support Browser: Modern Browser and IE8-
  */
@@ -289,4 +289,61 @@ $margin: 15px;
 
 .pull-right {
 	float: right;
+}
+
+@media screen and ( max-width: $bp_sp ) {
+	.visible-xs-block {
+		display: block;
+	}
+	.visible-xs-inline-block {
+		display: inline-block;
+	}
+	.visible-xs-inline {
+		display: inlinek;
+	}
+	.hidden-xs {
+		display: none;
+	}
+}
+@media screen and ( min-width: $bp_sp + 1 ) and ( max-width: $bp_tablet ) {
+	.visible-sm-block {
+		display: block;
+	}
+	.visible-sm-inline-block {
+		display: inline-block;
+	}
+	.visible-sm-inline {
+		display: inline;
+	}
+	.hidden-sm {
+		display: none;
+	}
+}
+@media screen and ( min-width: $bp_tablet + 1 ) and ( max-width: $bp_pc ) {
+	.visible-md-block {
+		display: block;
+	}
+	.visible-md-inline-block {
+		display: inline-block;
+	}
+	.visible-md-inline {
+		display: inline;
+	}
+	.hidden-md {
+		display: none;
+	}
+}
+@media screen and ( min-width: $bp_pc + 1 ) {
+	.visible-lg-block {
+		display: block;
+	}
+	.visible-lg-inline-block {
+		display: inline-block;
+	}
+	.visible-lg-inline {
+		display: inline;
+	}
+	.hidden-lg {
+		display: none;
+	}
 }

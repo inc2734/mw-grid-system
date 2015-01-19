@@ -12,7 +12,7 @@ http://2inc.org
 December 11, 2014
 
 ### Modified
-January 14, 2015
+January 15, 2015
 
 ## Sample code
 
